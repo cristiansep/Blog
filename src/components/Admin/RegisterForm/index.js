@@ -1,0 +1,1 @@
+export {defaurl} from './RegisterForm';
