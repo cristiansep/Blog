@@ -3,6 +3,8 @@ import {Layout, Tabs} from 'antd'
 import {Redirect} from 'react-router-dom'
 import Logo from '../../../assets/img/png/kreator.png';
 import RegisterForm from '../../../components/Admin/RegisterForm/RegisterForm';
+import LoginForm from '../../../components/Admin/LoginForm/LoginForm';
+import {getAccessTokenApi} from '../../../api/auth';
 
 import './SignIn.scss';
 
@@ -10,6 +12,10 @@ import './SignIn.scss';
 const SignIn = () => {
     const {Content} = Layout;
     const {TabPane} = Tabs;
+
+    if(getAccessTokenApi()){
+        return <Redirect to='/admin'/>
+    }
     return (
         <Layout className="sign-in">
             <Content className="sign-in__content">
@@ -20,7 +26,7 @@ const SignIn = () => {
                     <Tabs type="card">
 
                         <TabPane tab={<span>Entrar</span>} key="1">
-                            Componente LoginForm
+                            <LoginForm/>
                         </TabPane>
 
                         <TabPane tab={<span>Nuevo Usuario</span>} key="2">

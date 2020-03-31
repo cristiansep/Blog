@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Form, Input, Button, Checkbox, notification} from 'antd';
+import { Form, Input, Button, Checkbox, notification, Icon} from 'antd';
 import { UserOutlined, LockOutlined  } from '@ant-design/icons';
 import {emailValidation, minLengthValidation} from '../../../utils/formValidation';
 import { signUpApi } from "../../../api/user";
@@ -55,7 +55,8 @@ export default function RegisterForm() {
         }
     }
 
-    const register = async () => {
+    const register = async e => {
+        e.preventDefault();
         
         const emailVal = input.email;
         const passwordVal = input.password;
@@ -112,10 +113,10 @@ export default function RegisterForm() {
 
     return (
 
-        <Form className="register-form" onFinish={register}  onChange={changeForm}>
+        <Form className="register-form" onSubmit={register}  onChange={changeForm}>
             <Form.Item >
                 <Input 
-                prefix={<UserOutlined className="site-form-item-icon"/>}
+                prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
                 type="email" 
                 name="email"
                 placeholder="Correo Electronico"
@@ -127,7 +128,7 @@ export default function RegisterForm() {
 
             <Form.Item>
                 <Input
-                    prefix={<LockOutlined className="site-form-item-icon"/>}
+                    prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />}
                     type="password" 
                     name="password"
                     placeholder="Contraseña"
@@ -138,7 +139,7 @@ export default function RegisterForm() {
             </Form.Item>
             <Form.Item>
                 <Input
-                    prefix={<LockOutlined className="site-form-item-icon"/>}
+                    prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />}
                     type="password" 
                     name="repeatPassword"
                     placeholder="Repetir Contraseña"
